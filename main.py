@@ -113,7 +113,10 @@ args = parser.parse_args()
 # Parse the html file
 questions = parse_quiz_html(args.html_file)
 
-questions = list(questions.values())
+questions = [
+    (q['question'], q['answers'], q['correct'])
+    for q in questions.values()
+]
 
 # Save the questions
 save_questions(questions, args.output)
